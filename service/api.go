@@ -3,7 +3,7 @@ package service
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 )
 
@@ -28,7 +28,7 @@ func Users() []User {
 			fmt.Println("No response from request")
 		}
 		var tempResult []User
-		body, err := ioutil.ReadAll(resp.Body)                    // response body is []byte
+		body, err := io.ReadAll(resp.Body)                        // response body is []byte
 		if err := json.Unmarshal(body, &tempResult); err != nil { // Parse []byte to the go struct pointer
 			fmt.Println("Can not unmarshal JSON")
 		}

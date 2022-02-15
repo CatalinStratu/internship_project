@@ -3,7 +3,7 @@ package export
 import (
 	api "awesomeProject2/service"
 	"encoding/json"
-	"io/ioutil"
+	"os"
 )
 
 type Records struct {
@@ -20,6 +20,6 @@ func Export(collections map[string][]api.User) {
 		file, _ := json.MarshalIndent(tempRecord, "", " ")
 		var name string
 		name = i + ".json"
-		_ = ioutil.WriteFile(name, file, 0644)
+		_ = os.WriteFile(name, file, 0644)
 	}
 }
