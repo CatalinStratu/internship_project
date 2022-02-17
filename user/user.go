@@ -1,5 +1,6 @@
 package user
 
+// User structure
 type User struct {
 	FirstName string `json:"first"`
 	LastName  string `json:"last"`

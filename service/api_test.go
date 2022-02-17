@@ -70,6 +70,7 @@ func TestReadDatesErrorStatusCode(t *testing.T) {
 		t.Errorf("Status code error: %v", err)
 	}
 }
+
 func TestReadDatesErrorInvalidLink(t *testing.T) {
 	var input = &Input{Elements: 3, Link: "https://randomapi.coms1234123123"}
 	_, err := input.readDates()

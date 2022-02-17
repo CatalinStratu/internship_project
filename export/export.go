@@ -13,20 +13,29 @@ type Records struct {
 	Total   int         `json:"total_records"`
 }
 
-func Export(collections map[string][]user.User) error {
+// IExport interface
+type IWrite interface {
+	WriteRecord(records []Records) error
+}
+
+// Write structure
+type Write struct {
+}
+
+func Export(collections map[string][]user.User, write IWrite) error {
 	var records []Records
 	for i, j := range collections {
 		tempRecord := Records{Index: i, Records: j, Total: len(j)}
 		records = append(records, tempRecord)
 	}
-	err := WriteRecord(records)
+	err := write.WriteRecord(records)
 	if err != nil {
 		return fmt.Errorf("write record error: %v", err)
 	}
 	return nil
 }
 
-func WriteRecord(records []Records) error {
+func (w *Write) WriteRecord(records []Records) error {
 	for _, record := range records {
 		file, err := json.Marshal(record)
 		if err != nil {

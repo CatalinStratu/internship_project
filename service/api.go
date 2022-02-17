@@ -9,15 +9,18 @@ import (
 	"net/http"
 )
 
+// IRead interface
 type IRead interface {
 	readDates() ([]byte, error)
 }
 
+// Input structure
 type Input struct {
 	Link     string
 	Elements int
 }
 
+// readDates Read data from rest api
 func (r *Input) readDates() ([]byte, error) {
 	client := http.Client{}
 	req, err := http.NewRequestWithContext(context.Background(), http.MethodGet, r.Link, nil)
@@ -45,22 +48,29 @@ func (r *Input) readDates() ([]byte, error) {
 	return body, nil
 }
 
+// ReadUsers read users from the source return list of users
+// list of users is limited by the number of elements
 func ReadUsers(readDates IRead, elements int) ([]user.User, error) {
 	var users []user.User
 	for {
-		var tempResult []user.User
+		// temporal element
+		var tempData []user.User
+
+		// read dates from source
 		body, err := readDates.readDates()
 
 		if err != nil {
 			return nil, fmt.Errorf("JSON ERROR: %v", err)
 		}
 
-		if err := json.Unmarshal(body, &tempResult); err != nil { // Parse []byte to the go struct pointer
+		// Parse []byte to the go struct pointer
+		if err := json.Unmarshal(body, &tempData); err != nil {
 			return nil, fmt.Errorf("can not unmarshal JSON: %v", err)
 		}
 
-		users = append(users, tempResult...)
+		users = append(users, tempData...)
 		if len(users) >= elements {
+			//delete all items after the "elements" index
 			users = users[:elements]
 			break
 		}

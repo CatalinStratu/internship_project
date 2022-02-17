@@ -18,6 +18,6 @@ func TestGrouping(t *testing.T) {
 
 	expected["T"] = append(expected["T"], user1, user2, user3)
 	if reflect.DeepEqual(grouping, expected) {
-		t.Errorf("Array chunk was incorrect, got: %v, want: %v.", expected, expected["T"])
+		t.Errorf("Grouping was incorrect, got: %v, want: %v.", expected, expected["T"])
 	}
 }
