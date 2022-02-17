@@ -1,6 +1,7 @@
 package service
 
 import (
+	"awesomeProject2/user"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -8,32 +9,32 @@ import (
 	"net/http"
 )
 
-type User struct {
-	FirstName string `json:"first"`
-	LastName  string `json:"last"`
-	Email     string `json:"email"`
-	Address   string `json:"address"`
-	Created   string `json:"created"`
-	Balance   string `json:"balance"`
+type IRead interface {
+	readDates() ([]byte, error)
 }
 
-type Service interface {
-	Users()
+type Input struct {
+	Link     string
+	Elements int
 }
 
-func Request() ([]byte, error) {
+func (r *Input) readDates() ([]byte, error) {
 	client := http.Client{}
-	req, err := http.NewRequestWithContext(context.Background(), http.MethodGet, "https://randomapi.com/api/6de6abfedb24f889e0b5f675edc50deb?fmt=raw&sole", nil)
+	req, err := http.NewRequestWithContext(context.Background(), http.MethodGet, r.Link, nil)
 	if err != nil {
 		return nil, fmt.Errorf("cannot create request: %v", err)
 	}
 
 	rsp, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("invalide URL")
+
+	}
 	if rsp != nil {
 		defer rsp.Body.Close()
 	}
 
-	if rsp.StatusCode == 404 || rsp.StatusCode == 403 || rsp.StatusCode == 401 || rsp.StatusCode == 500 {
+	if rsp.StatusCode > 299 {
 		return nil, fmt.Errorf("response failed with status code: %v", rsp.StatusCode)
 	}
 
@@ -44,19 +45,25 @@ func Request() ([]byte, error) {
 	return body, nil
 }
 
-func Users() ([]User, error) {
-	var users []User
-	for i := 0; i < 5; i++ {
-		var tempResult []User
-		body, err := Request()
+func ReadUsers(readDates IRead, elements int) ([]user.User, error) {
+	var users []user.User
+	for {
+		var tempResult []user.User
+		body, err := readDates.readDates()
+
 		if err != nil {
 			return nil, fmt.Errorf("JSON ERROR: %v", err)
 		}
+
 		if err := json.Unmarshal(body, &tempResult); err != nil { // Parse []byte to the go struct pointer
 			return nil, fmt.Errorf("can not unmarshal JSON: %v", err)
 		}
 
 		users = append(users, tempResult...)
+		if len(users) >= elements {
+			users = users[:elements]
+			break
+		}
 	}
 	return users, nil
 }

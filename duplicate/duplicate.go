@@ -1,18 +1,13 @@
 package duplicate
 
 import (
-	api "awesomeProject2/service"
+	"awesomeProject2/user"
 )
 
-// Duplicate interface
-type Duplicate interface {
-	Remove(resSlice []api.User) []api.User
-}
-
 // Remove duplicates
-func Remove(users []api.User) []api.User {
-	allKeys := make(map[api.User]bool)
-	var list []api.User
+func Remove(users []user.User) []user.User {
+	allKeys := make(map[user.User]bool)
+	var list []user.User
 	for _, item := range users {
 		if _, value := allKeys[item]; !value {
 			allKeys[item] = true
