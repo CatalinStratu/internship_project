@@ -11,7 +11,6 @@ var user1 = user.User{FirstName: "Test Item 1", LastName: "Test", Email: "test",
 var user2 = user.User{FirstName: "Test Item 1", LastName: "Test", Email: "test", Address: "test", Created: "test", Balance: "test"}
 var user3 = user.User{FirstName: "", LastName: "Test", Email: "test", Address: "test", Created: "test", Balance: "test"}
 
-// TODO: failing test
 // TODO: add a test with multiple letters
 func TestGrouping(t *testing.T) {
 	var users []user.User

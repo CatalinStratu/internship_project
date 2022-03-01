@@ -1,21 +1,23 @@
 package read
 
 import (
+	"bytes"
 	"context"
 	"fmt"
+	"io/ioutil"
+	"net/http"
 	"reflect"
 	"service/user"
 	"testing"
 )
 
 // TODO: not a good idea to test with real data!!!!
-// TODO: you don't need to redefine the interface!!!
 type MockInputError struct {
 	Link     string
 	Elements int
 }
 
-func (m MockInputError) readDates(ctx context.Context) ([]byte, error) {
+func (m MockInputError) readDates(client HttpClient, ctx context.Context) ([]byte, error) {
 	return nil, fmt.Errorf("cannot create request")
 }
 
@@ -35,7 +37,7 @@ type MockInputSuccess struct {
 	Elements int
 }
 
-func (m MockInputSuccess) readDates(ctx context.Context) ([]byte, error) {
+func (m MockInputSuccess) readDates(client HttpClient, ctx context.Context) ([]byte, error) {
 	var s []byte
 	return s, nil
 }
@@ -51,21 +53,34 @@ func TestReadUsersReadDatesSuccess(t *testing.T) {
 	}
 }
 
-// Check invalid link
 func TestReadDatesErrorInvalidLink(t *testing.T) {
 	ctx := context.Background()
 	var input = &Input{Elements: 3, Link: "https://example.coms1234123123"}
-	_, err := input.readDates(ctx)
+	client := sendRequest{}
+	_, err := input.readDates(client, ctx)
 	if err == nil {
 		t.Errorf("invalide URL")
 	}
 }
 
-func TestReadDatesErrorStatusCode(t *testing.T) {
+type sendRequestError struct{}
+
+func (s sendRequestError) Do(req *http.Request) (*http.Response, error) {
+	r := &http.Response{
+		Status:     "500",
+		StatusCode: 500,
+		Body:       ioutil.NopCloser(bytes.NewReader(nil)),
+	}
+
+	return r, nil
+}
+
+func TestReadDatesErrorStatusCodeError(t *testing.T) {
 	ctx := context.Background()
-	var input = &Input{Elements: 3, Link: "https://randomapi.com/api/16de6abfedb24f889e0b5f675edc50deb?fmt=raw&sole"}
-	_, err := input.readDates(ctx)
-	if err != nil {
+	var input = &Input{Elements: 3, Link: "#"}
+	client := sendRequestError{}
+	_, err := input.readDates(client, ctx)
+	if err == nil {
 		t.Errorf("Status code error: %v", err)
 	}
 }

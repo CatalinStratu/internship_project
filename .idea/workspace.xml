@@ -5,25 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53a0139e-4ed8-49e7-9389-75614fcf9fbb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/awesomeProject2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/duplicate/duplicate.go" beforeDir="false" afterPath="$PROJECT_DIR$/duplicate/duplicate.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/duplicate/duplicate_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/duplicate/duplicate_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/export/export.go" beforeDir="false" afterPath="$PROJECT_DIR$/export/export.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/export/export_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/export/export_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/read/HttpClient.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grouping/group.go" beforeDir="false" afterPath="$PROJECT_DIR$/grouping/group.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grouping/group_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/grouping/group_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/read/read.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/api_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/read/read_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/read/read.go" beforeDir="false" afterPath="$PROJECT_DIR$/read/read.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/read/read_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/read/read_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" url="file://$USER_HOME$/sdk/go1.17.6" />
   <component name="Git.Settings">
@@ -51,6 +51,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -70,20 +71,8 @@
     <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="Go Test.TestReadDatesErrorStatusCode in service/read (1)">
-    <configuration name="TestExportRecordsSuccess in service/export" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="service" />
-      <working_directory value="$PROJECT_DIR$/export" />
-      <root_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="service/export" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestExportRecordsSuccess\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestReadDatesErrorStatusCode in service/read (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Test.TestReadUsersReadDatesError in service/read">
+    <configuration name="TestReadDatesErrorInvalidLink in service/read" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="service" />
       <working_directory value="$PROJECT_DIR$/read" />
       <root_directory value="$PROJECT_DIR$" />
@@ -92,7 +81,7 @@
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
-      <pattern value="^\QTestReadDatesErrorStatusCode\E$" />
+      <pattern value="^\QTestReadDatesErrorInvalidLink\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestReadDatesErrorStatusCode in service/read" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -105,6 +94,18 @@
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
       <pattern value="^\QTestReadDatesErrorStatusCode\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestReadDatesErrorStatusCodeError in service/read" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="service" />
+      <working_directory value="$PROJECT_DIR$/read" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="service/read" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestReadDatesErrorStatusCodeError\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestReadUsersReadDatesError in service/read" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -133,11 +134,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.TestReadDatesErrorStatusCode in service/read (1)" />
-        <item itemvalue="Go Test.TestReadUsersReadDatesSuccess in service/read" />
         <item itemvalue="Go Test.TestReadUsersReadDatesError in service/read" />
+        <item itemvalue="Go Test.TestReadUsersReadDatesSuccess in service/read" />
+        <item itemvalue="Go Test.TestReadDatesErrorStatusCodeError in service/read" />
+        <item itemvalue="Go Test.TestReadDatesErrorInvalidLink in service/read" />
         <item itemvalue="Go Test.TestReadDatesErrorStatusCode in service/read" />
-        <item itemvalue="Go Test.TestExportRecordsSuccess in service/export" />
       </list>
     </recent_temporary>
   </component>

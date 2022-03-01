@@ -1,6 +1,5 @@
 package read
 
-// TODO: what "service" means?
 import (
 	"context"
 	"encoding/json"
@@ -11,9 +10,8 @@ import (
 )
 
 // Read interface
-// TODO: what does IRead means?
 type Read interface {
-	readDates(ctx context.Context) ([]byte, error)
+	readDates(client HttpClient, ctx context.Context) ([]byte, error)
 }
 
 // Input structure
@@ -22,18 +20,15 @@ type Input struct {
 	Elements int
 }
 
-// readDates Read data from rest api
-func (r *Input) readDates(ctx context.Context) ([]byte, error) {
-	client := http.Client{}
-
-	// TODO: the context should have been created in main and passed to all the methods(as I explained already in the syncs)
+func (r *Input) readDates(client HttpClient, ctx context.Context) ([]byte, error) {
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, r.Link, nil)
 	if err != nil {
 		return nil, fmt.Errorf("cannot create request: %w", err)
 	}
 
-	rsp, err := client.Do(req)
-	if err != nil {
+	rsp, ok := client.Do(req)
+
+	if ok != nil {
 		return nil, fmt.Errorf("invalide URL")
 	}
 
@@ -55,20 +50,19 @@ func (r *Input) readDates(ctx context.Context) ([]byte, error) {
 // list of users is limited by the number of elements
 func Users(readDates Read, elements int, ctx context.Context) ([]user.User, error) {
 	var users []user.User
+	client := sendRequest{}
 	for {
 		// temporal element
 		var tempData []user.User
 
 		// read dates from source
-		body, err := readDates.readDates(ctx)
+		body, err := readDates.readDates(client, ctx)
 
 		if err != nil {
-			// TODO: why JSON error?
 			return nil, fmt.Errorf("%w", err)
 		}
 
 		// Parse []byte to the go struct pointer
-		// TODO: just reuse the last err
 		if err = json.Unmarshal(body, &tempData); err != nil {
 			return nil, fmt.Errorf("can not unmarshal JSON: %w", err)
 		}
