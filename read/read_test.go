@@ -11,7 +11,6 @@ import (
 	"testing"
 )
 
-// TODO: not a good idea to test with real data!!!!
 type MockInputError struct {
 	Link     string
 	Elements int
@@ -19,6 +18,18 @@ type MockInputError struct {
 
 func (m MockInputError) readDates(client HttpClient, ctx context.Context) ([]byte, error) {
 	return nil, fmt.Errorf("cannot create request")
+}
+
+type sendRequestError struct{}
+
+func (s sendRequestError) Do(req *http.Request) (*http.Response, error) {
+	r := &http.Response{
+		Status:     "500",
+		StatusCode: 500,
+		Body:       ioutil.NopCloser(bytes.NewReader(nil)),
+	}
+
+	return r, nil
 }
 
 func TestReadUsersReadDatesError(t *testing.T) {
@@ -61,18 +72,6 @@ func TestReadDatesErrorInvalidLink(t *testing.T) {
 	if err == nil {
 		t.Errorf("invalide URL")
 	}
-}
-
-type sendRequestError struct{}
-
-func (s sendRequestError) Do(req *http.Request) (*http.Response, error) {
-	r := &http.Response{
-		Status:     "500",
-		StatusCode: 500,
-		Body:       ioutil.NopCloser(bytes.NewReader(nil)),
-	}
-
-	return r, nil
 }
 
 func TestReadDatesErrorStatusCodeError(t *testing.T) {

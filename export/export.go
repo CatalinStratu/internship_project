@@ -22,10 +22,9 @@ type Write interface {
 }
 
 // WriteFile structure
-type WriteFile struct {
-}
+type WriteFile struct{}
 
-// TODO: why pointer receiver?
+//WriteFile writes data to the named file, creating it if necessary.
 func (w WriteFile) WriteFile(name string, data []byte, perm os.FileMode) error {
 	return os.WriteFile(name, data, perm)
 }
@@ -47,7 +46,6 @@ func Execute(collections map[string][]user.User, write Write) error {
 // WriteRecord Write record in file
 func (w *WriteFile) WriteRecord(records []Records) error {
 	for _, record := range records {
-		// TODO: this could sit in Export() as JSON encoding is not part of the writing
 		file, err := encoding(record)
 		if err != nil {
 			return fmt.Errorf("marshal error: %w", err)
