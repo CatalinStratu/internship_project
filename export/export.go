@@ -1,28 +1,37 @@
 package export
 
 import (
-	"awesomeProject2/user"
 	"encoding/json"
 	"fmt"
 	"os"
+
+	"service/user"
 )
 
+//Records record structure
 type Records struct {
 	Index   string      `json:"index"`
 	Records []user.User `json:"records"`
 	Total   int         `json:"total_records"`
 }
 
-// IExport interface
-type IWrite interface {
+// Write interface
+type Write interface {
 	WriteRecord(records []Records) error
+	WriteFile(name string, data []byte, perm os.FileMode) error
 }
 
-// Write structure
-type Write struct {
+// WriteFile structure
+type WriteFile struct {
 }
 
-func Export(collections map[string][]user.User, write IWrite) error {
+// TODO: why pointer receiver?
+func (w WriteFile) WriteFile(name string, data []byte, perm os.FileMode) error {
+	return os.WriteFile(name, data, perm)
+}
+
+//Execute collections in files, using records slice
+func Execute(collections map[string][]user.User, write Write) error {
 	var records []Records
 	for i, j := range collections {
 		tempRecord := Records{Index: i, Records: j, Total: len(j)}
@@ -35,17 +44,27 @@ func Export(collections map[string][]user.User, write IWrite) error {
 	return nil
 }
 
-func (w *Write) WriteRecord(records []Records) error {
+// WriteRecord Write record in file
+func (w *WriteFile) WriteRecord(records []Records) error {
 	for _, record := range records {
-		file, err := json.Marshal(record)
+		// TODO: this could sit in Export() as JSON encoding is not part of the writing
+		file, err := encoding(record)
 		if err != nil {
-			return fmt.Errorf("marshal error: %v", err)
+			return fmt.Errorf("marshal error: %w", err)
 		}
 		name := record.Index + ".json"
-		err = os.WriteFile(name, file, 0644)
+		err = w.WriteFile(name, file, 0644)
 		if err != nil {
-			return fmt.Errorf("cannot write the file: %v", err)
+			return fmt.Errorf("cannot write the file: %w", err)
 		}
 	}
 	return nil
+}
+
+func encoding(record Records) ([]byte, error) {
+	file, err := json.Marshal(record)
+	if err != nil {
+		return nil, fmt.Errorf("marshal error: %w", err)
+	}
+	return file, nil
 }

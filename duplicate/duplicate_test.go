@@ -1,9 +1,10 @@
 package duplicate
 
 import (
-	"awesomeProject2/user"
 	"reflect"
 	"testing"
+
+	"service/user"
 )
 
 func TestRemove(t *testing.T) {
@@ -20,6 +21,6 @@ func TestRemove(t *testing.T) {
 	expected = append(expected, user1)
 
 	if !reflect.DeepEqual(removeDuplicate, expected) {
-		t.Errorf("Array chunk was incorrect, got: %v, want: %v.", expected, removeDuplicate)
+		t.Errorf("Duplicate was incorrect, got: %v, want: %v.", expected, removeDuplicate)
 	}
 }

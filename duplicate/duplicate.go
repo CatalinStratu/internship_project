@@ -1,16 +1,18 @@
 package duplicate
 
 import (
-	"awesomeProject2/user"
+	"service/user"
 )
 
 // Remove duplicates
 func Remove(users []user.User) []user.User {
-	allKeys := make(map[user.User]bool)
+	// TODO: you can use struct{} instead of bool, as it occupies 0 space
+	allKeys := make(map[user.User]struct{})
 	var list []user.User
 	for _, item := range users {
-		if _, value := allKeys[item]; !value {
-			allKeys[item] = true
+		// TODO: a more clear idiom here is _,ok:= or _, found :=
+		if _, ok := allKeys[item]; !ok {
+			allKeys[item] = struct{}{}
 			list = append(list, item)
 		}
 	}
