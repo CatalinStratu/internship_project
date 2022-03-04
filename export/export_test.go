@@ -3,9 +3,8 @@ package export
 import (
 	"fmt"
 	"os"
-	"testing"
-
 	"service/user"
+	"testing"
 )
 
 type MockWriteErr struct {

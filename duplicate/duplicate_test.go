@@ -2,9 +2,8 @@ package duplicate
 
 import (
 	"reflect"
-	"testing"
-
 	"service/user"
+	"testing"
 )
 
 func TestRemove(t *testing.T) {

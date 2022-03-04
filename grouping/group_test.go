@@ -2,9 +2,8 @@ package grouping
 
 import (
 	"reflect"
-	"testing"
-
 	"service/user"
+	"testing"
 )
 
 var user1 = user.User{FirstName: "Test Item 1", LastName: "Test", Email: "test", Address: "test", Created: "test", Balance: "test"}

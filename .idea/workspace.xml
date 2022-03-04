@@ -6,11 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="53a0139e-4ed8-49e7-9389-75614fcf9fbb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/duplicate/duplicate.go" beforeDir="false" afterPath="$PROJECT_DIR$/duplicate/duplicate.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/duplicate/duplicate_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/duplicate/duplicate_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/export/export.go" beforeDir="false" afterPath="$PROJECT_DIR$/export/export.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/export/export_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/export/export_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grouping/group_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/grouping/group_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/read/HttpClient.go" beforeDir="false" afterPath="$PROJECT_DIR$/read/HttpClient.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/read/read_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/read/read_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +69,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="Go Test.TestGroupingMultipleLetters in service/grouping">
+  <component name="RunManager" selected="Go Test.gobench service/grouping">
     <configuration name="go build service" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="service" />
       <working_directory value="$PROJECT_DIR$" />
@@ -78,42 +77,6 @@
       <package value="service" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/main.go" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestGroupingMultipleLetters in service/grouping" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="service" />
-      <working_directory value="$PROJECT_DIR$/grouping" />
-      <root_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="service/grouping" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestGroupingMultipleLetters\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestReadUsersReadDatesError in service/read" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="service" />
-      <working_directory value="$PROJECT_DIR$/read" />
-      <root_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="service/read" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestReadUsersReadDatesError\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestReadUsersReadDatesSuccess in service/read" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="service" />
-      <working_directory value="$PROJECT_DIR$/read" />
-      <root_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="service/read" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestReadUsersReadDatesSuccess\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestRemove in service/duplicate" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -128,13 +91,47 @@
       <pattern value="^\QTestRemove\E$" />
       <method v="2" />
     </configuration>
+    <configuration name="TestWriteRecordSuccess in service/export" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="service" />
+      <working_directory value="$PROJECT_DIR$/export" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="service/export" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestWriteRecordSuccess\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go test service/grouping" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="service" />
+      <working_directory value="$PROJECT_DIR$/grouping" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="service/grouping" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <method v="2" />
+    </configuration>
+    <configuration name="gobench service/grouping" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="service" />
+      <working_directory value="$PROJECT_DIR$/grouping" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="service/grouping" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gobench" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.TestGroupingMultipleLetters in service/grouping" />
-        <item itemvalue="Go Test.TestRemove in service/duplicate" />
+        <item itemvalue="Go Test.gobench service/grouping" />
+        <item itemvalue="Go Test.go test service/grouping" />
         <item itemvalue="Go Build.go build service" />
-        <item itemvalue="Go Test.TestReadUsersReadDatesError in service/read" />
-        <item itemvalue="Go Test.TestReadUsersReadDatesSuccess in service/read" />
+        <item itemvalue="Go Test.TestRemove in service/duplicate" />
+        <item itemvalue="Go Test.TestWriteRecordSuccess in service/export" />
       </list>
     </recent_temporary>
   </component>
