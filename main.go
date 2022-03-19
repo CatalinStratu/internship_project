@@ -6,7 +6,6 @@ import (
 	"service/duplicate"
 	"service/export"
 	"service/grouping"
-	// TODO: don't use hacks like import alias without a good reason(like a conflicting name)
 	"service/read"
 )
 
